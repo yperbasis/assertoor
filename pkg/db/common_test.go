@@ -13,6 +13,7 @@ func TestSqliteSharesDataAcrossConnections(t *testing.T) {
 		name string
 		file string
 	}{
+		{name: "bare memory", file: ":memory:"},
 		{name: "default memory", file: ":memory:?cache=shared"},
 		{name: "memory URI", file: "file::memory:?cache=shared"},
 		{name: "named memory URI", file: "file:assertoor-test?mode=memory&cache=shared"},

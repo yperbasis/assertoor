@@ -90,6 +90,10 @@ func (db *Database) initSqlite(config *SqliteDatabaseConfig) error {
 	db.logger.Infof("initializing sqlite connection to %v with %v/%v conn limit", config.File, config.MaxIdleConns, config.MaxOpenConns)
 
 	dsn := config.File
+	if dsn == ":memory:" {
+		dsn += "?cache=shared"
+	}
+
 	if strings.HasPrefix(dsn, ":memory:?") {
 		dsn = "file:" + dsn
 	}
